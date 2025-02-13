@@ -1,15 +1,21 @@
-import React, {  useState } from "react";
+import React, {  useCallback, useState } from "react";
 import { SearchBarProps } from "../interfaces/interface";
+import debounce from "lodash.debounce"
 
 
 export default function SearchBar({onSearch}: SearchBarProps) {
 
   const [search, setSearch] = useState("")
 
+  const debouncedSearch = useCallback(
+    debounce((value: string) => onSearch(value), 300),
+    [onSearch]
+  );
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
     setSearch(value)
-    onSearch(value)
+    debouncedSearch(value)
   }
   
   return (

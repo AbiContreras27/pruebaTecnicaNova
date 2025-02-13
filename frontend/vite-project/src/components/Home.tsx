@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useCallback, useContext, useState } from "react";
 import SearchBar from "./SearchBar";
 import UsersList from "./UsersList";
 import { UserContext } from "../context/usersContext";
@@ -10,10 +10,14 @@ export default function Home() {
   const [selectedUser, setSelectedUser] = useState<User | null>(null)
 
   if (!context) {
-    return <p className="text-center text-red-500">Error: No se pudo cargar el contexto</p>;
+    return <p className="text-center text-red-500">Error: No se cargo el contexto</p>;
   }
 
   const { filteredUsers, SearchUsers } = context;
+
+  const handleSelectUser = useCallback((user: User | null) => {
+    setSelectedUser(user)
+  }, [])
 
   return (
     <div className="p-4 m-10">
@@ -22,7 +26,7 @@ export default function Home() {
       </h1>
 
       <SearchBar onSearch={SearchUsers} />
-      <UsersList users={filteredUsers} onSelect={setSelectedUser} />
+      <UsersList users={filteredUsers} onSelect={handleSelectUser} />
       {selectedUser && <UserDetails user={selectedUser} onClose={() => setSelectedUser(null)} />}
     </div>
   );

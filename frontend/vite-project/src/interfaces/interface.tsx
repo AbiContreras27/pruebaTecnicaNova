@@ -24,5 +24,5 @@ export interface SearchBarProps {
 export interface UserContextType {
     userData: User[];
     filteredUsers: User[]
-    SearchUsers: (term: string) => void;
+    SearchUsers: (searchText: string) => void;
 }
