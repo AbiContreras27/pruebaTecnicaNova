@@ -30,6 +30,22 @@ Para manejar listas de usuarios con un numero de usuarios grande en la lista, se
 
 ---
 
+## Backend:
+
+Se desarrollo con nestjs en una arquitectura modular, basada en modulos donde el modulo **Users** agrupa:
+- Controllers
+- Services
+- Entities
+- Dto
+
+1. Se creo un Middleware para observar la ruta y los métodos que se ejecutan en el backend.
+2. Se creo un servicio de seeder para cargar usuarios a la **DB** desde un file **json**
+3. Se aplicó variables de entorno para brindar seguridad en la conexión de la **DB**
+4. Se creador de manera voluntaria los controladores y servicios para tener un CRUD completo el cual se puede probar por un client ya sea **Postman**, **Insomnia** u **otros**
+5. Se realizo una pequeña paginación en el backend para mostrar los datos en cualquier client de preferencia.
+
+---
+
 ## Instalación y Uso
 1. Clonar el repositorio.
 2. Ubicarse dentro del directorio del proyecto **frontend/vite-project**
