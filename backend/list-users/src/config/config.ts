@@ -6,8 +6,8 @@ dotenvConfig({ path: '.env' })
 
 const config = {
     type: "postgres",
-    // url: process.env.DATABASE_URL,
-    host: `${process.env.DB_HOST}` || 'localhost',
+
+    url: `${process.env.DB_HOST}` || 'localhost',
     port: parseInt(process.env.DB_PORT || '5432', 10),
     username: `${process.env.DB_USERNAME}`,
     password: `${process.env.DB_PASSWORD}`,
@@ -18,6 +18,9 @@ const config = {
     dropSchema: false,
     synchronize: true,
     logging: false,
+    ssl: {
+        rejectUnauthorized: false,
+    },
 
 }
 
